@@ -35,6 +35,8 @@
 #include "SCQueryFunctions.h"
 #include "j9jclnls.h"
 
+#include "static_analyzer.h"
+
 #if defined(J9VM_OPT_DYNAMIC_LOAD_SUPPORT) /* File Level Build Flags */
 
 static UDATA classCouldPossiblyBeShared(J9VMThread * vmThread, J9LoadROMClassData * loadData);
@@ -168,6 +170,15 @@ internalDefineClass(
 
 		/* report the ROM load events */
 		reportROMClassLoadEvents(vmThread, romClass, classLoader);
+
+		/* setup static analyzer context */
+		StaticAnalyzerContext analyzerContext;
+		analyzerContext.jvmThread = vmThread;
+		analyzerContext.romClass = romClass;
+		analyzerContext.classLoader = classLoader;
+		
+		/* run the static analysis */
+		perform_static_analysis(&analyzerContext);
 
 		/* localBuffer should not be NULL */
 		Trc_BCU_Assert_True(NULL != localBuffer);

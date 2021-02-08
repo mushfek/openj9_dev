@@ -37,6 +37,8 @@ target_sources(j9dyn_sources
 		${CMAKE_CURRENT_SOURCE_DIR}/ClassFileWriter.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/ComparingCursor.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/ConstantPoolMap.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/string_builder.c
+		${CMAKE_CURRENT_SOURCE_DIR}/static_analyzer.c
 		${CMAKE_CURRENT_SOURCE_DIR}/defineclass.c
 		${CMAKE_CURRENT_SOURCE_DIR}/dynload.c
 		${CMAKE_CURRENT_SOURCE_DIR}/J9PortAllocationStrategy.cpp
